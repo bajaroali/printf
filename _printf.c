@@ -1,10 +1,15 @@
 #include "main.h"
-#include <stdarg.h>
-#include <limits.h>
-#include <stdio.h>
 
+void write_buffer(char buffer[], int *buff_ind);
+
+/**
+ * _printf - custom printf function
+ * @format: format string.
+ * Return: number of printed chars.
+ */
 int _printf(const char *format, ...)
 {
+<<<<<<< HEAD
 	int char_print = 0;
 	va_list args_list;
 
@@ -55,11 +60,59 @@ int _printf(const char *format, ...)
 	}
 	va_end(args_list);
 	return (char_print);
+=======
+	int i, printed = 0, no_of_printed_chars = 0;
+	int flags, width, precision, size, buff_ind = 0;
+	va_list list;
+	char buffer[BUFF_SIZE];
+
+	if (format == NULL)
+		return (-1);
+
+	va_start(list, format);
+
+	for (i = 0; format && format[i] != '\0'; i++)
+	{
+		if (format[i] != '%')
+		{
+			buffer[buff_ind++] = format[i];
+			if (buff_ind == BUFF_SIZE)
+				write_buffer(buffer, &buff_ind);
+			/* write(1, &format[i], 1);*/
+			no_of_printed_chars++;
+		}
+		else
+		{
+			write_buffer(buffer, &buff_ind);
+			flags = flags_handler(format, &i);
+			width = width_handler(format, &i, list);
+			precision = precision_setter(format, &i, list);
+			size = size_cast(format, &i);
+			++i;
+			printed = pull_print(format, &i, list, buffer,
+				flags, width, precision, size);
+			if (printed == -1)
+				return (-1);
+			no_of_printed_chars += printed;
+		}
+	}
+
+	write_buffer(buffer, &buff_ind);
+
+	va_end(list);
+
+	return (no_of_printed_chars);
+>>>>>>> 203cca8be5d26dad3c8a9310b0601fa10679fc90
 }
 
 /**
- * int main()
+ * write_buffer - Prints the contents of the buffer if it exist
+ * @buffer: Array of chars
+ * @buff_ind: Index at which to add next char, represents the length.
+ */
+void write_buffer(char buffer[], int *buff_ind)
 {
+<<<<<<< HEAD
 _printf("Bajaro\n");
 _printf("%c\n", 'V');
 _printf("%s\n", "String");
@@ -102,4 +155,10 @@ int main(void)
 	/*_printf("Unknown:[%r]\n");*/
 	/* printf("Unknown:[%r]\n");*/
 	return (0);
+=======
+	if (*buff_ind > 0)
+		write(1, &buffer[0], *buff_ind);
+
+	*buff_ind = 0;
+>>>>>>> 203cca8be5d26dad3c8a9310b0601fa10679fc90
 }
