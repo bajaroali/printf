@@ -64,3 +64,4 @@ void write_buffer(char buffer[], int *buff_ind)
 
 	*buff_ind = 0;
 }
+
