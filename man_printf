@@ -19,7 +19,7 @@ Print ARGUMENT(s) according to FORMAT, or execute according to OPTION:
       --version
       output version information and exit
 
-The _printf() function produces output according to 
+The _printf() function produces output according to
 .I format
 as described below. The function
 .B_printf()
