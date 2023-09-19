@@ -93,7 +93,8 @@ int write_hexadecimal(va_list types, char buffer[],
 }
 
 /**
- *  * write_hexa_upper - Prints an unsigned number in upper hexadecimal notation
+ *  * write_hexa_upper - Prints an unsigned number in,
+ *  *upper hexadecimal notation
  *   * @types: Lista of arguments
  *    * @buffer: Buffer array to handle print
  *     * @flags:  Calculates active flags
